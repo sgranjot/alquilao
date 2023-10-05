@@ -44,5 +44,5 @@ public class Direccion implements Serializable {
     @JoinColumn(name = "usuario_id")                                        
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Usuario usuario;
-
+ 
 }

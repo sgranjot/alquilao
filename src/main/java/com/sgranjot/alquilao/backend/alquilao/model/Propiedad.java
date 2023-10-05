@@ -55,5 +55,5 @@ public class Propiedad implements Serializable {
     public static enum Tipo{
         OFICINA, LOCAL, VIVIENDA, NAVE, GARAJE
     }
-    
+     
 }

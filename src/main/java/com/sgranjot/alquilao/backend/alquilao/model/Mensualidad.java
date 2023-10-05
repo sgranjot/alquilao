@@ -40,5 +40,5 @@ public class Mensualidad implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "contrato_id")
     private Contrato contrato;
-    
+     
 }

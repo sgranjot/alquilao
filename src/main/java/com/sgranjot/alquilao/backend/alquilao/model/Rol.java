@@ -24,5 +24,5 @@ public class Rol implements Serializable{
     private Long id;
     @Column(unique = true, length = 20)
     private String nombre;
-    
+     
 }

@@ -47,6 +47,6 @@ public class Gasto implements Serializable {
     public static enum Tipo{
         IMPUESTO, COMUNIDAD, SUMINISTRO, SEGURO, INCIDENCIA, HIPOTECA
     }
-
+ 
     
 }

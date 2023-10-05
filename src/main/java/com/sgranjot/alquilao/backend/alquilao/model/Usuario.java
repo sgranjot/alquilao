@@ -59,5 +59,5 @@ public class Usuario implements Serializable{
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private List<Direccion> direcciones;
 
-
+ 
 }
