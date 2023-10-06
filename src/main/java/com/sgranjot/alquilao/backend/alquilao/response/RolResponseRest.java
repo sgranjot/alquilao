@@ -1,6 +1,6 @@
 package com.sgranjot.alquilao.backend.alquilao.response;
 
-public class RolesResponseRest extends ResponseRest{
+public class RolResponseRest extends ResponseRest{
 
     private RolResponse rolResponse;
 
