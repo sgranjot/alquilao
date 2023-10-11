@@ -2,7 +2,7 @@ package com.sgranjot.alquilao.backend.alquilao.response;
 
 public class ArrendatarioResponseRest extends ResponseRest {
 
-    private ArrendatarioResponse arrendatarioResponse;
+    private ArrendatarioResponse arrendatarioResponse = new ArrendatarioResponse();
 
     
     public ArrendatarioResponse getArrendatarioResponse() {

@@ -67,7 +67,7 @@ public class ArrendatarioServiceImpl implements IArrendatarioService {
             }
         } catch (Exception e) {
             response.setMetadata("respuesta no ok", "-1", "error al consultar el arrendatario");
-            log.error("respuesta no ok", e.getMessage());
+            log.error("respuesta no ok", e);
             e.getStackTrace();
             return new ResponseEntity<ArrendatarioResponseRest>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
