@@ -38,7 +38,7 @@ public class ArrendatarioServiceImpl implements IArrendatarioService {
             response.setMetadata("Respuesta ok", "00", "Respuesta exitosa");
         } catch (Exception e) {
             response.setMetadata("Respuesta no ok", "-1", "Error al consultar arrendatarios");
-            log.error("error al consultar arrendatarios: ", e.getMessage());
+            log.error("error al consultar arrendatarios: ", e);
             e.getStackTrace();
             return new ResponseEntity<ArrendatarioResponseRest>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -94,7 +94,7 @@ public class ArrendatarioServiceImpl implements IArrendatarioService {
                 return new ResponseEntity<ArrendatarioResponseRest>(response, HttpStatus.BAD_REQUEST);
             } 
         }catch (Exception e) {
-            log.error("error al crear arrendatario", e.getMessage());
+            log.error("error al crear arrendatario", e);
             response.setMetadata("Respuesta no ok", "-1", "error al crear el arrendatario");
             e.getStackTrace();
             return new ResponseEntity<ArrendatarioResponseRest>(response, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -138,7 +138,7 @@ public class ArrendatarioServiceImpl implements IArrendatarioService {
                 return new ResponseEntity<ArrendatarioResponseRest>(response, HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            log.error("error al actualizar el arrendatario", e.getMessage());
+            log.error("error al actualizar el arrendatario", e);
             e.getStackTrace();
             response.setMetadata("Respuesta no ok", "-1", "arrendatario no actualizado");
             return new ResponseEntity<ArrendatarioResponseRest>(response, HttpStatus.INTERNAL_SERVER_ERROR);

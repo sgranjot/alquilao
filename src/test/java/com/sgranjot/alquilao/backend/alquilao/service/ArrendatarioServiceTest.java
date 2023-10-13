@@ -24,10 +24,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.sgranjot.alquilao.backend.alquilao.DataDummy;
 import com.sgranjot.alquilao.backend.alquilao.model.Arrendatario;
 import com.sgranjot.alquilao.backend.alquilao.model.dao.IArrendatarioDao;
 import com.sgranjot.alquilao.backend.alquilao.response.ArrendatarioResponseRest;
+import com.sgranjot.alquilao.backend.alquilao.utils.DataDummy;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -132,6 +132,7 @@ public class ArrendatarioServiceTest {
         verify(arrendatarioDaoMock, times(1)).save(any(Arrendatario.class));
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         ArrendatarioResponseRest response = responseEntity.getBody();
+        assertNotNull(response);
         assertEquals(DataDummy.ARRENDATARIO, response.getArrendatarioResponse().getArrendatarios().get(0));
 
         when(this.arrendatarioDaoMock.save(any(Arrendatario.class)))
@@ -165,6 +166,7 @@ public class ArrendatarioServiceTest {
         verify(arrendatarioDaoMock, times(1)).save(any(Arrendatario.class));
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         ArrendatarioResponseRest response = responseEntity.getBody();
+        assertNotNull(response);
         assertEquals(DataDummy.ARRENDATARIO, response.getArrendatarioResponse().getArrendatarios().get(0));
 
         when(this.arrendatarioDaoMock.findById(VALID_ID))
