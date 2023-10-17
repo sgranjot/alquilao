@@ -49,7 +49,7 @@ public class ContratoServiceTest {
 
 
     @Test
-    @DisplayName ("buscarContratos() should works")
+    @DisplayName ("buscarContratos() should work")
     void buscarContratos(){
         when(this.contratoDaoMock.findAll())
             .thenReturn(DataDummy.CONTRATOS);
@@ -80,7 +80,7 @@ public class ContratoServiceTest {
 
 
     @Test
-    @DisplayName("buscarPorId() should works")
+    @DisplayName("buscarPorId() should work")
     void buscarPorId(){
         when(contratoDaoMock.findById(VALID_ID))
             .thenReturn(Optional.of(DataDummy.CONTRATO));
@@ -112,7 +112,7 @@ public class ContratoServiceTest {
 
 
     @Test
-    @DisplayName ("crear() should works")
+    @DisplayName ("crear() should work")
     void crear(){
         when(contratoDaoMock.save(any(Contrato.class)))
             .thenReturn(DataDummy.CONTRATO);
@@ -143,9 +143,9 @@ public class ContratoServiceTest {
 
 
     @Test
-    @DisplayName("actualizar() should works")
+    @DisplayName("actualizar() should work")
     void actualizar (){
-        when(contratoDaoMock.findById(VALID_ID))
+        when(contratoDaoMock.findById(anyLong()))
             .thenReturn(Optional.of(DataDummy.CONTRATO));
         when(contratoDaoMock.save(any(Contrato.class)))
             .thenReturn(DataDummy.CONTRATO);
@@ -157,7 +157,7 @@ public class ContratoServiceTest {
         assertNotNull(responseBody);
         assertEquals(DataDummy.CONTRATO, responseBody.getContratoResponse().getContratos().get(0));
 
-        when(contratoDaoMock.findById(VALID_ID))
+        when(contratoDaoMock.findById(anyLong()))
             .thenReturn(Optional.of(DataDummy.CONTRATO));
         when(contratoDaoMock.save(any(Contrato.class)))
             .thenReturn(null);
@@ -168,7 +168,7 @@ public class ContratoServiceTest {
         ContratoResponseRest responseNullBody = responseNull.getBody();
         assertNotNull(responseNullBody);
 
-        when(contratoDaoMock.findById(INVALID_ID))
+        when(contratoDaoMock.findById(anyLong()))
             .thenReturn(Optional.empty());
         ResponseEntity<ContratoResponseRest> responseEmpty = this.contratoService.actualizar(DataDummy.CONTRATO, INVALID_ID);
         verify(contratoDaoMock, times(1)).findById(INVALID_ID);
@@ -176,7 +176,7 @@ public class ContratoServiceTest {
         ContratoResponseRest responseEmptyBody = responseEmpty.getBody();
         assertNotNull(responseEmptyBody);
 
-        when(contratoDaoMock.findById(INVALID_ID))
+        when(contratoDaoMock.findById(anyLong()))
             .thenThrow(new RuntimeException("Simulated exception"));
         ResponseEntity<ContratoResponseRest> responseException = this.contratoService.actualizar(DataDummy.CONTRATO, INVALID_ID);
         verify(contratoDaoMock, times(2)).findById(INVALID_ID);
@@ -188,7 +188,7 @@ public class ContratoServiceTest {
 
 
     @Test
-    @DisplayName ("eliminar should works")
+    @DisplayName ("eliminar should work")
     void eliminar (){
         doNothing().when(contratoDaoMock).deleteById(anyLong());
         ResponseEntity<ContratoResponseRest> response = this.contratoService.eliminar(VALID_ID);
@@ -197,7 +197,7 @@ public class ContratoServiceTest {
         ContratoResponseRest responseBody = response.getBody();
         assertNotNull(responseBody);
 
-        doThrow(new RuntimeException()).when(contratoDaoMock).deleteById(anyLong());
+        doThrow(new RuntimeException("Simulated exception")).when(contratoDaoMock).deleteById(anyLong());
         ResponseEntity<ContratoResponseRest> responseException = this.contratoService.eliminar(INVALID_ID);
         verify(contratoDaoMock, times(1)).deleteById(INVALID_ID);
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseException.getStatusCode());

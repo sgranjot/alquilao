@@ -62,7 +62,7 @@ public class ArrendatarioServiceTest {
 
 
     @Test
-    @DisplayName ("buscarArrendatarios should works")
+    @DisplayName ("buscarArrendatarios should work")
     void buscarArrendatarios(){
         when(this.arrendatarioDaoMock.findAll())
             .thenReturn(DataDummy.ARRENDATARIOS);
@@ -93,7 +93,7 @@ public class ArrendatarioServiceTest {
 
 
     @Test
-    @DisplayName ("buscarPorId should works")
+    @DisplayName ("buscarPorId should work")
     void buscarPorId(){
         when(this.arrendatarioDaoMock.findById(VALID_ID))
             .thenReturn(Optional.of(DataDummy.ARRENDATARIO));
@@ -124,7 +124,7 @@ public class ArrendatarioServiceTest {
 
 
     @Test
-    @DisplayName ("crear should works")
+    @DisplayName ("crear should work")
     void crear(){
         when(this.arrendatarioDaoMock.save(any(Arrendatario.class)))
             .thenReturn(DataDummy.ARRENDATARIO);
@@ -155,7 +155,7 @@ public class ArrendatarioServiceTest {
 
 
     @Test
-    @DisplayName ("actualizar should works")
+    @DisplayName ("actualizar should work")
     void actualizar (){
         when(this.arrendatarioDaoMock.findById(VALID_ID))
             .thenReturn(Optional.of(DataDummy.ARRENDATARIO));
@@ -200,7 +200,7 @@ public class ArrendatarioServiceTest {
 
 
     @Test
-    @DisplayName ("eliminar should works")
+    @DisplayName ("eliminar should work")
     void eliminar(){
         doNothing().when(arrendatarioDaoMock).deleteById(VALID_ID);
         ResponseEntity<ArrendatarioResponseRest> responseEntity = this.arrendatarioService.eliminar(VALID_ID);

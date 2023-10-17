@@ -25,7 +25,7 @@ public class DataDummy {
 
     public static final Propiedad PROPIEDAD;
 
-    public static final Direccion DIRECCION;
+    public static final Direccion DIRECCION, DIRECCION2, DIRECCION3;
 
     public static final List<Contrato> CONTRATOS;
 
@@ -48,8 +48,6 @@ public class DataDummy {
         
         PROPIEDADES = new ArrayList<>();
 
-        DIRECCIONES = new ArrayList<>();
-
         MENSUALIDADES = new ArrayList<>();
 
         GASTOS = new ArrayList<>();
@@ -65,6 +63,12 @@ public class DataDummy {
         ARRENDATARIO3 = new Arrendatario(3L, "ArrendatarioTest3", "apellidos test3", "00000000C", "323456789", "arrendatario3@test.com", CONTRATOS, new Usuario());
 
         ARRENDATARIOS = new ArrayList<>(Arrays.asList(ARRENDATARIO2,ARRENDATARIO3));
+
+        DIRECCION2 = new Direccion(2L, "CalleTest2", "NúmeroTest2", "PisoTest2", "PuertaTest2", "88888", "PoblacionTest2", "provinciaTest2", "PaisTest2", null, new Usuario());
+
+        DIRECCION3 = new Direccion(2L, "CalleTest3", "NúmeroTest3", "PisoTest3", "PuertaTest3", "77777", "PoblacionTest3", "provinciaTest3", "PaisTest3", null, new Usuario());
+
+        DIRECCIONES = new ArrayList<>(Arrays.asList(DIRECCION2, DIRECCION3));
           
         USUARIO = new Usuario(1L, "UsuarioTest", "passwordTest", true, ROLES, PROPIEDADES, ARRENDATARIOS, DIRECCIONES);
 

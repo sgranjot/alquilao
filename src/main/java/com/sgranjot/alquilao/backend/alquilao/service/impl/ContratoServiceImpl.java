@@ -121,7 +121,6 @@ public class ContratoServiceImpl implements IContratoService {
                 contratoBuscado.get().setFechaFin(contrato.getFechaFin());
                 contratoBuscado.get().setFechaInicio(contrato.getFechaInicio());
                 contratoBuscado.get().setFianza(contrato.getFianza());
-                contratoBuscado.get().setId(contrato.getId());
                 contratoBuscado.get().setMensualidad(contrato.getMensualidad());
                 contratoBuscado.get().setMensualidades(contrato.getMensualidades());
                 contratoBuscado.get().setPropiedad(contrato.getPropiedad());
