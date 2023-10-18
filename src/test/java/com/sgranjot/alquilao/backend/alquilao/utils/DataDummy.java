@@ -9,9 +9,9 @@ import com.sgranjot.alquilao.backend.alquilao.model.Arrendatario;
 import com.sgranjot.alquilao.backend.alquilao.model.Contrato;
 import com.sgranjot.alquilao.backend.alquilao.model.Direccion;
 import com.sgranjot.alquilao.backend.alquilao.model.Gasto;
+import com.sgranjot.alquilao.backend.alquilao.model.Gasto.Tipo;
 import com.sgranjot.alquilao.backend.alquilao.model.Mensualidad;
 import com.sgranjot.alquilao.backend.alquilao.model.Propiedad;
-import com.sgranjot.alquilao.backend.alquilao.model.Propiedad.Tipo;
 import com.sgranjot.alquilao.backend.alquilao.model.Rol;
 import com.sgranjot.alquilao.backend.alquilao.model.Usuario;
 
@@ -26,6 +26,8 @@ public class DataDummy {
     public static final Propiedad PROPIEDAD;
 
     public static final Direccion DIRECCION, DIRECCION2, DIRECCION3;
+
+    public static final Gasto GASTO, GASTO2, GASTO3;
 
     public static final List<Contrato> CONTRATOS;
 
@@ -50,7 +52,11 @@ public class DataDummy {
 
         MENSUALIDADES = new ArrayList<>();
 
-        GASTOS = new ArrayList<>();
+        GASTO2 = new Gasto(2L, 1000, LocalDate.of(2023, 02, 01)  , "GastoTest2", Tipo.HIPOTECA, new Propiedad(), new Usuario());
+
+        GASTO3 = new Gasto(3L, 300, LocalDate.of(2022, 12, 11)  , "GastoTest3", Tipo.IMPUESTO, new Propiedad(), new Usuario());
+
+        GASTOS = new ArrayList<>(Arrays.asList(GASTO2, GASTO3));
         
         CONTRATO2 = new Contrato(2L, LocalDate.of(2010, 01, 06), LocalDate.of(2015, 01, 06), 1400, 700, MENSUALIDADES, new Propiedad(), new Arrendatario(), new Usuario());
 
@@ -76,9 +82,11 @@ public class DataDummy {
 
         DIRECCION = new Direccion(1L, "CalleTest", "NúmeroTest", "PisoTest", "PuertaTest", "99999", "PoblaciónTest", "ProvinciaTest", "PaisTest", null, USUARIO);
 
-        PROPIEDAD = new Propiedad(1L, false, Tipo.VIVIENDA, DIRECCION, GASTOS, CONTRATOS, USUARIO);
+        PROPIEDAD = new Propiedad(1L, false, Propiedad.Tipo.VIVIENDA, DIRECCION, GASTOS, CONTRATOS, USUARIO);
      
         CONTRATO = new Contrato(1L, LocalDate.of(2020, 10, 12), LocalDate.of(2025, 10, 12), 1200, 600, MENSUALIDADES, PROPIEDAD, ARRENDATARIO, USUARIO);
+
+        GASTO = new Gasto(1L, 500.0, LocalDate.of(2022, 11, 10), "GastoTest", Tipo.SEGURO, PROPIEDAD, USUARIO);
 
     }
 

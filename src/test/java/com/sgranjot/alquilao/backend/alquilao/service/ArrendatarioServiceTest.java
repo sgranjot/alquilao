@@ -95,7 +95,7 @@ public class ArrendatarioServiceTest {
     @Test
     @DisplayName ("buscarPorId should work")
     void buscarPorId(){
-        when(this.arrendatarioDaoMock.findById(VALID_ID))
+        when(this.arrendatarioDaoMock.findById(anyLong()))
             .thenReturn(Optional.of(DataDummy.ARRENDATARIO));
         ResponseEntity<ArrendatarioResponseRest> responseEntity = this.arrendatarioService.buscarPorId(VALID_ID);
         verify(arrendatarioDaoMock, times(1)).findById(VALID_ID);
@@ -104,7 +104,7 @@ public class ArrendatarioServiceTest {
         assertNotNull(response);
         assertEquals(DataDummy.ARRENDATARIO, response.getArrendatarioResponse().getArrendatarios().get(0));
 
-        when(this.arrendatarioDaoMock.findById(INVALID_ID))
+        when(this.arrendatarioDaoMock.findById(anyLong()))
             .thenReturn(Optional.empty());
         ResponseEntity<ArrendatarioResponseRest> responseEntityNoValid = this.arrendatarioService.buscarPorId(INVALID_ID);
         verify(arrendatarioDaoMock, times(1)).findById(INVALID_ID);
@@ -157,7 +157,7 @@ public class ArrendatarioServiceTest {
     @Test
     @DisplayName ("actualizar should work")
     void actualizar (){
-        when(this.arrendatarioDaoMock.findById(VALID_ID))
+        when(this.arrendatarioDaoMock.findById(anyLong()))
             .thenReturn(Optional.of(DataDummy.ARRENDATARIO));
         when(this.arrendatarioDaoMock.save(any(Arrendatario.class)))
             .thenReturn(DataDummy.ARRENDATARIO);
@@ -169,7 +169,7 @@ public class ArrendatarioServiceTest {
         assertNotNull(response);
         assertEquals(DataDummy.ARRENDATARIO, response.getArrendatarioResponse().getArrendatarios().get(0));
 
-        when(this.arrendatarioDaoMock.findById(VALID_ID))
+        when(this.arrendatarioDaoMock.findById(anyLong()))
             .thenReturn(Optional.of(DataDummy.ARRENDATARIO));
         when(this.arrendatarioDaoMock.save(any(Arrendatario.class)))
             .thenReturn(null);
@@ -180,7 +180,7 @@ public class ArrendatarioServiceTest {
         ArrendatarioResponseRest responseNullBody = responseEntityNull.getBody();
         assertNotNull(responseNullBody);
 
-        when(this.arrendatarioDaoMock.findById(INVALID_ID))
+        when(this.arrendatarioDaoMock.findById(anyLong()))
             .thenReturn(Optional.empty());
         ResponseEntity<ArrendatarioResponseRest> responseEntityInvalid = this.arrendatarioService.actualizar(DataDummy.ARRENDATARIO, INVALID_ID);
         verify(arrendatarioDaoMock, times(1)).findById(INVALID_ID);
@@ -202,14 +202,14 @@ public class ArrendatarioServiceTest {
     @Test
     @DisplayName ("eliminar should work")
     void eliminar(){
-        doNothing().when(arrendatarioDaoMock).deleteById(VALID_ID);
+        doNothing().when(arrendatarioDaoMock).deleteById(anyLong());
         ResponseEntity<ArrendatarioResponseRest> responseEntity = this.arrendatarioService.eliminar(VALID_ID);
         verify(arrendatarioDaoMock, times(1)).deleteById(VALID_ID);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         ArrendatarioResponseRest response = responseEntity.getBody();
         assertNotNull(response);
 
-        doThrow(new RuntimeException("Simulated exception")).when(arrendatarioDaoMock).deleteById(INVALID_ID);
+        doThrow(new RuntimeException("Simulated exception")).when(arrendatarioDaoMock).deleteById(anyLong());
         ResponseEntity<ArrendatarioResponseRest> responseException = this.arrendatarioService.eliminar(INVALID_ID);
         verify(arrendatarioDaoMock, times(1)).deleteById(INVALID_ID);
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseException.getStatusCode());
