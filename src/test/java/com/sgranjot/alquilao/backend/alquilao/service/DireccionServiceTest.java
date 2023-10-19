@@ -57,16 +57,19 @@ public class DireccionServiceTest {
         ResponseEntity<DireccionResponseRest> responseEntity = this.direccionService.buscarDirecciones();
         verify(direccionDaoMock, times(1)).findAll();
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertNotNull(responseEntity.getBody());
-        assertEquals(DataDummy.DIRECCIONES, responseEntity.getBody().getDireccionResponse().getDirecciones());
-        assertEquals(2, responseEntity.getBody().getDireccionResponse().getDirecciones().size());
+        DireccionResponseRest responseBody = responseEntity.getBody();
+        assertNotNull(responseBody);
+        assertEquals(DataDummy.DIRECCIONES, responseBody.getDireccionResponse().getDirecciones());
+        assertEquals(2, responseBody.getDireccionResponse().getDirecciones().size());
 
         when(this.direccionDaoMock.findAll())
             .thenReturn(Collections.emptyList());
         ResponseEntity<DireccionResponseRest> responseEmpty = this.direccionService.buscarDirecciones();
         verify(direccionDaoMock, times(2)).findAll();
         assertEquals(HttpStatus.OK, responseEmpty.getStatusCode());
-        assertEquals(0, responseEmpty.getBody().getDireccionResponse().getDirecciones().size());
+        DireccionResponseRest responseEmptyBody = responseEmpty.getBody();
+        assertNotNull(responseEmptyBody);
+        assertEquals(0, responseEmptyBody.getDireccionResponse().getDirecciones().size());
         assertNotNull(responseEmpty.getBody());
 
         when(this.direccionDaoMock.findAll())

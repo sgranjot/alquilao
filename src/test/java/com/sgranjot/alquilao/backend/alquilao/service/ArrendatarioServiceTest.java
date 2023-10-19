@@ -70,15 +70,17 @@ public class ArrendatarioServiceTest {
         verify(arrendatarioDaoMock, times(1)).findAll();
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         ArrendatarioResponseRest responseBody = responseEntity.getBody();
+        assertNotNull(responseBody);
         assertEquals(DataDummy.ARRENDATARIOS, responseBody.getArrendatarioResponse().getArrendatarios());
         assertEquals(2, responseBody.getArrendatarioResponse().getArrendatarios().size());
 
         when(this.arrendatarioDaoMock.findAll())
-            .thenReturn(Collections.EMPTY_LIST);
+            .thenReturn(Collections.emptyList());
         ResponseEntity<ArrendatarioResponseRest> responseEntityEmpty = this.arrendatarioService.buscarArrendatarios();
         verify(arrendatarioDaoMock, times(2)).findAll();
         assertEquals(HttpStatus.OK, responseEntityEmpty.getStatusCode());
         ArrendatarioResponseRest responseEmptyBody = responseEntityEmpty.getBody();
+        assertNotNull(responseEmptyBody);
         assertEquals(0, responseEmptyBody.getArrendatarioResponse().getArrendatarios().size());
 
         when(this.arrendatarioDaoMock.findAll())
@@ -129,7 +131,7 @@ public class ArrendatarioServiceTest {
         when(this.arrendatarioDaoMock.save(any(Arrendatario.class)))
             .thenReturn(DataDummy.ARRENDATARIO);
         ResponseEntity<ArrendatarioResponseRest> responseEntity = this.arrendatarioService.crear(DataDummy.ARRENDATARIO);
-        verify(arrendatarioDaoMock, times(1)).save(any(Arrendatario.class));
+        verify(arrendatarioDaoMock, times(1)).save(DataDummy.ARRENDATARIO);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         ArrendatarioResponseRest response = responseEntity.getBody();
         assertNotNull(response);
@@ -138,7 +140,7 @@ public class ArrendatarioServiceTest {
         when(this.arrendatarioDaoMock.save(any(Arrendatario.class)))
             .thenReturn(null);
         ResponseEntity<ArrendatarioResponseRest> responseEntityNull = this.arrendatarioService.crear(DataDummy.ARRENDATARIO);
-        verify(arrendatarioDaoMock, times(2)).save(any(Arrendatario.class));
+        verify(arrendatarioDaoMock, times(2)).save(DataDummy.ARRENDATARIO);
         assertEquals(HttpStatus.BAD_REQUEST, responseEntityNull.getStatusCode());
         ArrendatarioResponseRest responseNullBody = responseEntityNull.getBody();
         assertNotNull(responseNullBody);
@@ -146,7 +148,7 @@ public class ArrendatarioServiceTest {
         when(this.arrendatarioDaoMock.save(any(Arrendatario.class)))
             .thenThrow(new RuntimeException("Simulated exception"));
         ResponseEntity<ArrendatarioResponseRest> responseEntityException = this.arrendatarioService.crear(DataDummy.ARRENDATARIO);
-        verify(arrendatarioDaoMock, times(3)).save(any(Arrendatario.class));
+        verify(arrendatarioDaoMock, times(3)).save(DataDummy.ARRENDATARIO);
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntityException.getStatusCode());
         ArrendatarioResponseRest responseExceptionBody = responseEntityException.getBody();
         assertNotNull(responseExceptionBody);
@@ -163,7 +165,7 @@ public class ArrendatarioServiceTest {
             .thenReturn(DataDummy.ARRENDATARIO);
         ResponseEntity<ArrendatarioResponseRest> responseEntity = this.arrendatarioService.actualizar(DataDummy.ARRENDATARIO, VALID_ID);
         verify(arrendatarioDaoMock, times(1)).findById(VALID_ID);
-        verify(arrendatarioDaoMock, times(1)).save(any(Arrendatario.class));
+        verify(arrendatarioDaoMock, times(1)).save(DataDummy.ARRENDATARIO);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         ArrendatarioResponseRest response = responseEntity.getBody();
         assertNotNull(response);
@@ -175,7 +177,7 @@ public class ArrendatarioServiceTest {
             .thenReturn(null);
         ResponseEntity<ArrendatarioResponseRest> responseEntityNull = this.arrendatarioService.actualizar(DataDummy.ARRENDATARIO, VALID_ID);
         verify(arrendatarioDaoMock, times(2)).findById(VALID_ID);
-        verify(arrendatarioDaoMock, times(2)).save(any(Arrendatario.class));
+        verify(arrendatarioDaoMock, times(2)).save(DataDummy.ARRENDATARIO);
         assertEquals(HttpStatus.BAD_REQUEST, responseEntityNull.getStatusCode());
         ArrendatarioResponseRest responseNullBody = responseEntityNull.getBody();
         assertNotNull(responseNullBody);

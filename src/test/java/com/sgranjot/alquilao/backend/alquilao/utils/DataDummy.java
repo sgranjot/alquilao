@@ -29,6 +29,8 @@ public class DataDummy {
 
     public static final Gasto GASTO, GASTO2, GASTO3;
 
+    public static final Mensualidad MENSUALIDAD, MENSUALIDAD2, MENSUALIDAD3;
+
     public static final List<Contrato> CONTRATOS;
 
     public static final List<Rol> ROLES;
@@ -44,13 +46,18 @@ public class DataDummy {
     public static final List<Gasto> GASTOS;
 
 
+
     static {
  
         ROLES = new ArrayList<>();
         
         PROPIEDADES = new ArrayList<>();
 
-        MENSUALIDADES = new ArrayList<>();
+        MENSUALIDAD2 = new Mensualidad(2L, 1000, LocalDate.of(2022, 05, 10), true, new Usuario(), new Contrato());
+
+        MENSUALIDAD3 = new Mensualidad(3L, 900, LocalDate.of(2023, 05, 10), true, new Usuario(), new Contrato());
+
+        MENSUALIDADES = new ArrayList<>(Arrays.asList(MENSUALIDAD2,MENSUALIDAD3));
 
         GASTO2 = new Gasto(2L, 1000, LocalDate.of(2023, 02, 01)  , "GastoTest2", Tipo.HIPOTECA, new Propiedad(), new Usuario());
 
@@ -87,6 +94,8 @@ public class DataDummy {
         CONTRATO = new Contrato(1L, LocalDate.of(2020, 10, 12), LocalDate.of(2025, 10, 12), 1200, 600, MENSUALIDADES, PROPIEDAD, ARRENDATARIO, USUARIO);
 
         GASTO = new Gasto(1L, 500.0, LocalDate.of(2022, 11, 10), "GastoTest", Tipo.SEGURO, PROPIEDAD, USUARIO);
+
+        MENSUALIDAD = new Mensualidad(1L, 1200, LocalDate.of(2021, 05, 10), true, USUARIO, CONTRATO);
 
     }
 

@@ -104,7 +104,7 @@ public class GastoServiceTest {
         
         when(gastoDaoMock.findById(anyLong()))
             .thenThrow(new RuntimeException("Simulated exception"));
-        ResponseEntity responseException = this.gastoService.buscarPorId(INVALID_ID);
+        ResponseEntity<GastoResponseRest> responseException = this.gastoService.buscarPorId(INVALID_ID);
         verify(gastoDaoMock, times(2)).findById(INVALID_ID);
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseException.getStatusCode());
         GastoResponseRest responseExceptionBody = (GastoResponseRest) responseException.getBody();
@@ -151,7 +151,7 @@ public class GastoServiceTest {
             .thenReturn(Optional.of(DataDummy.GASTO));
         when(gastoDaoMock.save(any(Gasto.class)))
             .thenReturn(DataDummy.GASTO);
-        ResponseEntity response = this.gastoService.actualizar(DataDummy.GASTO, VALID_ID);
+        ResponseEntity<GastoResponseRest> response = this.gastoService.actualizar(DataDummy.GASTO, VALID_ID);
         verify(gastoDaoMock, times(1)).findById(VALID_ID);
         verify(gastoDaoMock, times(1)).save(DataDummy.GASTO);
         assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -163,7 +163,7 @@ public class GastoServiceTest {
             .thenReturn(Optional.of(DataDummy.GASTO));
         when(gastoDaoMock.save(any(Gasto.class)))
             .thenReturn(null);
-        ResponseEntity responseNull = this.gastoService.actualizar(DataDummy.GASTO, VALID_ID);
+        ResponseEntity<GastoResponseRest> responseNull = this.gastoService.actualizar(DataDummy.GASTO, VALID_ID);
         verify(gastoDaoMock, times(2)).findById(VALID_ID);
         verify(gastoDaoMock, times(2)).save(DataDummy.GASTO);
         assertEquals(HttpStatus.BAD_REQUEST, responseNull.getStatusCode());

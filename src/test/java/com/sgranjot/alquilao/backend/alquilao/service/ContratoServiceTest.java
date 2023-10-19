@@ -57,15 +57,17 @@ public class ContratoServiceTest {
         verify(contratoDaoMock, times(1)).findAll();
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         ContratoResponseRest responseBody = responseEntity.getBody();
+        assertNotNull(responseBody);
         assertEquals(DataDummy.CONTRATOS, responseBody.getContratoResponse().getContratos());
         assertEquals(2, responseBody.getContratoResponse().getContratos().size());
 
         when(this.contratoDaoMock.findAll())
-            .thenReturn(Collections.EMPTY_LIST);
+            .thenReturn(Collections.emptyList());
         ResponseEntity<ContratoResponseRest> responseEmpty = this.contratoService.buscarContratos();
         verify(contratoDaoMock, times(2)).findAll();
         assertEquals(HttpStatus.OK, responseEmpty.getStatusCode());
         ContratoResponseRest responseEmptyBody = responseEmpty.getBody();
+        assertNotNull(responseEmptyBody);
         assertEquals(0, responseEmptyBody.getContratoResponse().getContratos().size());
 
         when(this.contratoDaoMock.findAll())
