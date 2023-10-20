@@ -23,7 +23,7 @@ public class DataDummy {
 
     public static final Contrato CONTRATO, CONTRATO2, CONTRATO3;
 
-    public static final Propiedad PROPIEDAD;
+    public static final Propiedad PROPIEDAD, PROPIEDAD2, PROPIEDAD3;
 
     public static final Direccion DIRECCION, DIRECCION2, DIRECCION3;
 
@@ -50,8 +50,6 @@ public class DataDummy {
     static {
  
         ROLES = new ArrayList<>();
-        
-        PROPIEDADES = new ArrayList<>();
 
         MENSUALIDAD2 = new Mensualidad(2L, 1000, LocalDate.of(2022, 05, 10), true, new Usuario(), new Contrato());
 
@@ -82,6 +80,12 @@ public class DataDummy {
         DIRECCION3 = new Direccion(2L, "CalleTest3", "NúmeroTest3", "PisoTest3", "PuertaTest3", "77777", "PoblacionTest3", "provinciaTest3", "PaisTest3", null, new Usuario());
 
         DIRECCIONES = new ArrayList<>(Arrays.asList(DIRECCION2, DIRECCION3));
+
+        PROPIEDAD2 = new Propiedad(2L, false, Propiedad.Tipo.VIVIENDA, new Direccion(), GASTOS, CONTRATOS, new Usuario());
+
+        PROPIEDAD3 = new Propiedad(3L, false, Propiedad.Tipo.VIVIENDA, new Direccion(), GASTOS, CONTRATOS, new Usuario());
+
+        PROPIEDADES = new ArrayList<>(Arrays.asList(PROPIEDAD2, PROPIEDAD3));
           
         USUARIO = new Usuario(1L, "UsuarioTest", "passwordTest", true, ROLES, PROPIEDADES, ARRENDATARIOS, DIRECCIONES);
 
