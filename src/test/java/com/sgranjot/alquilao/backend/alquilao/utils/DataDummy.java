@@ -49,7 +49,7 @@ public class DataDummy {
 
     static {
  
-        ROLES = new ArrayList<>();
+        ROLES = new ArrayList<>(Arrays.asList(new Rol(1L, "Usuario")));
 
         MENSUALIDAD2 = new Mensualidad(2L, 1000, LocalDate.of(2022, 05, 10), true, new Usuario(), new Contrato());
 
