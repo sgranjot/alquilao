@@ -2,7 +2,7 @@ package com.sgranjot.alquilao.backend.alquilao.response;
 
 public class GastoResponseRest extends ResponseRest {
 
-    private GastoResponse gastoResponse;
+    private GastoResponse gastoResponse = new GastoResponse();
 
 
     public GastoResponse getGastoResponse() {

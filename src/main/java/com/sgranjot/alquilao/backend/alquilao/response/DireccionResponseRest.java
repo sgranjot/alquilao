@@ -2,7 +2,7 @@ package com.sgranjot.alquilao.backend.alquilao.response;
 
 public class DireccionResponseRest extends ResponseRest {
 
-    private DireccionResponse direccionResponse;
+    private DireccionResponse direccionResponse = new DireccionResponse();
 
     public DireccionResponse getDireccionResponse() {
         return direccionResponse;

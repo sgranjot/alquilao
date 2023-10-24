@@ -2,7 +2,7 @@ package com.sgranjot.alquilao.backend.alquilao.response;
 
 public class ContratoResponseRest extends ResponseRest {
 
-    private ContratoResponse contratoResponse;
+    private ContratoResponse contratoResponse = new ContratoResponse();
 
     
     public ContratoResponse getContratoResponse() {

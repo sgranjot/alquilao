@@ -2,7 +2,7 @@ package com.sgranjot.alquilao.backend.alquilao.response;
 
 public class UsuarioResponseRest extends ResponseRest {
 
-    private UsuarioResponse usuarioResponse;
+    private UsuarioResponse usuarioResponse = new UsuarioResponse();
 
 
     public UsuarioResponse getUsuarioResponse() {
